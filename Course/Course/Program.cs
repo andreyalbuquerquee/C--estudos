@@ -19,9 +19,9 @@ namespace Course {
             Console.WriteLine("Informe o segundo lado do triângulo Y:");
             int secondSideY = int.Parse(Console.ReadLine());
 
-            double xArea = ((double)firstSideX + secondSideX) / 2;
+            double xArea = ((double)firstSideX * secondSideX) / 2;
 
-            double yArea = ((double)firstSideY + secondSideY) / 2;
+            double yArea = ((double)firstSideY * secondSideY) / 2;
 
             string biggerTriangle = xArea > yArea ? "X" : "Y";
 

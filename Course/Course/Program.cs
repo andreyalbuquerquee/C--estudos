@@ -24,9 +24,13 @@ namespace Course {
             Console.WriteLine("Informe a base do triângulo Y:");
             y.Base = int.Parse(Console.ReadLine());
 
+
             double xArea = x.calculateArea();
 
             double yArea = y.calculateArea();
+
+            
+
 
             string biggerTriangle = xArea > yArea ? "X" : "Y";
 

@@ -4,26 +4,31 @@ using System.Globalization;
 
 namespace Course {
 
-    class Aluno {
-        public string Name { get; set; }
-        public int Grade { get; set; }
-    }
-
     class Program {
         static void Main(string[] args) {
 
-            List<Aluno> alunos = new List<Aluno> {
-                { new Aluno { Name = "João", Grade = 8 } },
-                { new Aluno { Name = "Maria", Grade = 3 } },
-                { new Aluno { Name = "Pedro", Grade = 9 } },
-                { new Aluno { Name = "Ana", Grade = 5 } },
-                { new Aluno { Name = "Carlos", Grade = 10 } },
-            };
+            Console.WriteLine("Informe o primeiro lado do triângulo X:");
+            int firstSideX = int.Parse(Console.ReadLine());
 
-            foreach (Aluno aluno in alunos) {
-                string gradeSituation = aluno.Grade >= 6 ? "APROVADO!" : "REPROVADO!";
-                Console.WriteLine($"O aluno(a) {aluno.Name} está {gradeSituation}");
-            }
+            Console.WriteLine("Informe o segundo lado do triângulo X:");
+            int secondSideX = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Informe o primeiro lado do triângulo Y:");
+            int firstSideY = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Informe o segundo lado do triângulo Y:");
+            int secondSideY = int.Parse(Console.ReadLine());
+
+            double xArea = ((double)firstSideX + secondSideX) / 2;
+
+            double yArea = ((double)firstSideY + secondSideY) / 2;
+
+            string biggerTriangle = xArea > yArea ? "X" : "Y";
+
+            Console.WriteLine($"O triângulo {biggerTriangle} é o maior!");
+            Console.WriteLine($"Área X: {xArea:F2}");
+            Console.WriteLine($"Área Y: {yArea:F2}");
+
 
 
         }

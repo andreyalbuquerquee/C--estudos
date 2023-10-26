@@ -7,21 +7,26 @@ namespace Course {
     class Program {
         static void Main(string[] args) {
 
-            Console.WriteLine("Informe o primeiro lado do triângulo X:");
-            int firstSideX = int.Parse(Console.ReadLine());
+            Triangle x, y;
 
-            Console.WriteLine("Informe o segundo lado do triângulo X:");
-            int secondSideX = int.Parse(Console.ReadLine());
+            x = new Triangle();
+            y = new Triangle();
+            
+            Console.WriteLine("Informe a altura do triângulo X:");
+            x.Height = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Informe o primeiro lado do triângulo Y:");
-            int firstSideY = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a base do triângulo X:");
+            x.Base = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Informe o segundo lado do triângulo Y:");
-            int secondSideY = int.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a altura do triângulo Y:");
+            y.Height = int.Parse(Console.ReadLine());
 
-            double xArea = ((double)firstSideX + secondSideX) / 2;
+            Console.WriteLine("Informe a base do triângulo Y:");
+            y.Base = int.Parse(Console.ReadLine());
 
-            double yArea = ((double)firstSideY + secondSideY) / 2;
+            double xArea = x.calculateArea();
+
+            double yArea = y.calculateArea();
 
             string biggerTriangle = xArea > yArea ? "X" : "Y";
 

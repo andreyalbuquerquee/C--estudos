@@ -1,0 +1,14 @@
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\bin\Debug\net6.0\Course.exe
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\bin\Debug\net6.0\Course.deps.json
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\bin\Debug\net6.0\Course.runtimeconfig.json
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\bin\Debug\net6.0\Course.dll
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\bin\Debug\net6.0\Course.pdb
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\Course.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\Course.AssemblyInfoInputs.cache
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\Course.AssemblyInfo.cs
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\Course.csproj.CoreCompileInputs.cache
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\Course.dll
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\refint\Course.dll
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\Course.pdb
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\Course.genruntimeconfig.cache
+C:\Users\andre\OneDrive\Documents\C# estudos\Course\Course\obj\Debug\net6.0\ref\Course.dll

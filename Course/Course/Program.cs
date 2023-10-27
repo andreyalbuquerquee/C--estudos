@@ -23,12 +23,12 @@ namespace Course {
             Console.WriteLine($"Dados do produto: \n{p}");
 
             Console.WriteLine("Digite as unidades a serem adicionadas em estoque: ");
-            p.Unity += int.Parse(Console.ReadLine());
+            p.AddToStock(int.Parse(Console.ReadLine()));
 
             Console.WriteLine($"Dados atualizados do produto: \n{p}");
 
             Console.WriteLine("Digite as unidades a serem removidas do estoque: ");
-            p.Unity -= int.Parse(Console.ReadLine());
+            p.RemoveFromStock(int.Parse(Console.ReadLine()));
 
             Console.WriteLine($"Dados atualizados do produto: \n{p}");
         }

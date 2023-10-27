@@ -13,5 +13,9 @@ namespace Course {
         public double TotalPriceInStock() {
             return Price * Unity;
         }
+
+        public override string ToString() {
+            return $"Nome: {Name}\nPreço: R${Price}\nUnidades: {Unity}\nPreço total: R${TotalPriceInStock():F2}";
+        }
     }
 }

@@ -7,18 +7,11 @@ namespace Course {
     class Program {
         static void Main(string[] args) {
 
-            Console.WriteLine("Digite a quantidade de alturas que deseja informar: ");
-            int n = int.Parse(Console.ReadLine());
+            string[] names = new string[] { "Andrey", "Lucineide", "André" };
 
-            double[] heights = new double[n];
-
-            Console.WriteLine("Agora digite as alturas: ");
-
-            for (int i = 0; i < n; i++) {
-                heights[i] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            foreach (string name in names) {
+                Console.WriteLine(name);
             }
-
-            Console.WriteLine($"Média das alturas é: {heights.Average().ToString("F2", CultureInfo.InvariantCulture)}");
 
         }
     }

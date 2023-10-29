@@ -7,30 +7,19 @@ namespace Course {
     class Program {
         static void Main(string[] args) {
 
-            Product p = new Product();
-            
-            Console.WriteLine("Digite os dados do produto: ");
-            
-            Console.WriteLine("Nome: ");
-            p.Name = Console.ReadLine();
-            
-            Console.WriteLine("Digite o preço: ");
-            p.Price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.WriteLine("Digite a quantidade de alturas que deseja informar: ");
+            int n = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Digite as unidades em estoque: ");
-            p.Unity = int.Parse(Console.ReadLine());
+            double[] heights = new double[n];
 
-            Console.WriteLine($"Dados do produto: \n{p}");
+            Console.WriteLine("Agora digite as alturas: ");
 
-            Console.WriteLine("Digite as unidades a serem adicionadas em estoque: ");
-            p.AddToStock(int.Parse(Console.ReadLine()));
+            for (int i = 0; i < n; i++) {
+                heights[i] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            }
 
-            Console.WriteLine($"Dados atualizados do produto: \n{p}");
+            Console.WriteLine($"Média das alturas é: {heights.Average().ToString("F2", CultureInfo.InvariantCulture)}");
 
-            Console.WriteLine("Digite as unidades a serem removidas do estoque: ");
-            p.RemoveFromStock(int.Parse(Console.ReadLine()));
-
-            Console.WriteLine($"Dados atualizados do produto: \n{p}");
         }
     }
 }

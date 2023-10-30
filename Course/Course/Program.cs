@@ -1,5 +1,7 @@
 ﻿
 
+using Course.Entities;
+using Course.Entities.Enums;
 using System.Globalization;
 
 namespace Course {
@@ -7,11 +9,21 @@ namespace Course {
     class Program {
         static void Main(string[] args) {
 
-            string[] names = new string[] { "Andrey", "Lucineide", "André" };
+            Order order = new Order {
+                Id = 1080,
+                Moment = DateTime.Now,
+                Status = OrderStatus.PendingPayment
+            };
 
-            foreach (string name in names) {
-                Console.WriteLine(name);
-            }
+            Console.WriteLine(order);
+
+            string txt = OrderStatus.PendingPayment.ToString();
+
+            Console.WriteLine(txt);
+
+            OrderStatus orderStatus = Enum.Parse<OrderStatus>("Shipped");
+
+            Console.WriteLine(orderStatus);
 
         }
     }

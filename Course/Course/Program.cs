@@ -5,11 +5,24 @@ namespace Course {
     class Program {
         static void Main(string[] args) {
 
-            BusinessAccount businessAccount = new BusinessAccount(8010, "Andrey", 100.0, 500.0);
+            Account acc = new Account(1001, "Andrey", 0.0);
 
-            Console.WriteLine(businessAccount.Balance);
+            BusinessAccount bacc = new BusinessAccount(1002, "Brian", 0.0, 500.0);
 
-            businessAccount.Balance = 200; // da erro isso, só da pra alterar o saldo por dentro da classe businessAccount
+            // UPCASTING
+            Account acc1 = bacc;
+            Account acc2 = new BusinessAccount(1003, "João", 0.0, 200.0);
+            Account acc3 = new SavingsAccount(1004, "Caju", 0.0, 0.01);
+
+            // DOWNCASTING
+            BusinessAccount acc4 = (BusinessAccount)acc2;
+
+            // BusinessAccount acc5 = (BusinessAccount)acc3; Da erro pq BusinessAccount n é compatível com SavingsAccount
+            if (acc3 is BusinessAccount) // Vai dar false
+            {
+                BusinessAccount acc5 = (BusinessAccount)acc3;
+                BusinessAccount acc6 = acc3 as BusinessAccount; // da pra fazer assim tb o casting
+            }
         }
     }
 }

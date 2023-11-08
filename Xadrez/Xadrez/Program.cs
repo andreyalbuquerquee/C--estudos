@@ -7,6 +7,8 @@ namespace Xadrez
     {
         static void Main(string[] args) 
         {
+            try
+            { 
             Board board = new Board(8, 8);
 
 
@@ -14,6 +16,11 @@ namespace Xadrez
             board.PlacePiece(new Rook(board, Color.White), new Position(7, 7));
 
             Screen.DisplayBoard(board);
+            }
+            catch (BoardException ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

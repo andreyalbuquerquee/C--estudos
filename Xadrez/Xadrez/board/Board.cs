@@ -1,4 +1,6 @@
-﻿namespace board
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace board
 {
     class Board
     {
@@ -18,10 +20,38 @@
             return Pieces[row, column];
         }
 
+        public Piece Piece(Position position) 
+        {
+            return Pieces[position.Row, position.Column];
+        }
+
         public void PlacePiece(Piece piece, Position position) 
         {
+            if (HasPiece(position)) throw new BoardException("Já existe uma peça nessa posição!");
+            
             Pieces[position.Row, position.Column] = piece;
             piece.Position = position;
+        }
+
+        public bool HasPiece(Position position) 
+        {
+            ValidatePosition(position);
+            return Piece(position) != null;
+        }
+        
+        public bool IsPositionValid(Position position) 
+        {
+            if (position.Row < 0 || 
+                position.Row >= Rows || 
+                position.Column < 0 || 
+                position.Column >= Columns) return false;
+            return true;
+        
+        }
+
+        public void ValidatePosition(Position position) 
+        {
+            if (!IsPositionValid(position)) throw new BoardException("Posição inválida!");
         }
     }
 }

@@ -7,10 +7,20 @@ namespace Xadrez
     {
         static void Main(string[] args) 
         {
-            ChessPosition pos = new ChessPosition('a', 1);
+            try
+            { 
+            Board board = new Board(8, 8);
 
-            Console.WriteLine(pos);
-            Console.WriteLine(pos.toPosition());
+
+            board.PlacePiece(new Rook(board, Color.White), new Position(7, 0));
+            board.PlacePiece(new Rook(board, Color.Black), new Position(7, 7));
+
+            Screen.DisplayBoard(board);
+            }
+            catch (BoardException ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

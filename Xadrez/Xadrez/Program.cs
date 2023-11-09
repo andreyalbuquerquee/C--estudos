@@ -8,14 +8,25 @@ namespace Xadrez
         static void Main(string[] args) 
         {
             try
-            { 
-            Board board = new Board(8, 8);
+            {
+                ChessMatch match = new ChessMatch();
 
+                while (!match.Finished)
+                {
+                    Console.Clear();
+                    Screen.DisplayBoard(match.Board);
 
-            board.PlacePiece(new Rook(board, Color.White), new Position(7, 0));
-            board.PlacePiece(new Rook(board, Color.Black), new Position(7, 7));
+                    Console.WriteLine();
+                    Console.WriteLine("Origem: ");
+                    Position origin = Screen.ReadChessPosition().toPosition();
 
-            Screen.DisplayBoard(board);
+                    Console.WriteLine("Destino: ");
+                    Position target = Screen.ReadChessPosition().toPosition();
+
+                    match.MakeMove(origin, target);
+                }
+
+            
             }
             catch (BoardException ex) 
             {

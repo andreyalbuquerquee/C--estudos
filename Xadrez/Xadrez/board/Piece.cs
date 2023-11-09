@@ -14,5 +14,10 @@
             Color = color;
             MovsMade = 0;
         }
+
+        public void IncreaseMovsMade() 
+        {
+            MovsMade++;
+        }
     }
 }

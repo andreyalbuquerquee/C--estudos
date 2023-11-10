@@ -59,8 +59,12 @@ namespace chessPieces
 
             Check = IsKingInCheck(EnemyColor(ActualPlayer)); 
 
-            Turn++;
-            ChangePlayer();
+            if (IsKingInCheckmate(EnemyColor(ActualPlayer))) Finished = true;
+            else
+            {
+                Turn++;
+                ChangePlayer();
+            }  
         }
 
         public void ValidateOriginPosition(Position origin)
@@ -128,6 +132,31 @@ namespace chessPieces
             return false;
         }
         
+        public bool IsKingInCheckmate(Color color)
+        {
+            if (!IsKingInCheck(color)) return false;
+            foreach(Piece p in PiecesInGameByColor(color))
+            {
+                bool[,] possibleMovs = p.PossibleMovs();
+                for (int i = 0; i < Board.Rows; i++)
+                {
+                    for (int j = 0; i < Board.Columns; i++)
+                    {
+                        if (possibleMovs[i, j])
+                        {
+                            Position origin = p.Position;
+                            Position target = new Position(i, j);
+                            Piece capturedPiece = MakeMove(p.Position, target);
+                            bool isCheck = IsKingInCheck(color);
+                            UnmakeMove(origin, target, capturedPiece);
+                            if (!isCheck) return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+        
         public void PlaceNewPiece(char column, int row,Piece piece)
         {
             Board.PlacePiece(piece, new ChessPosition(column, row).toPosition());
@@ -136,13 +165,12 @@ namespace chessPieces
         
         public void PlacePieces() 
         {
-            PlaceNewPiece('a', 1, new Rook(Board, Color.White));
-            PlaceNewPiece('h', 1, new Rook(Board, Color.White));
-            PlaceNewPiece('e', 1, new King(Board, Color.White));
+            PlaceNewPiece('c', 1, new Rook(Board, Color.White));
+            PlaceNewPiece('d', 1, new King(Board, Color.White));
+            PlaceNewPiece('h', 7, new Rook(Board, Color.White));
 
-            PlaceNewPiece('a', 8, new Rook(Board, Color.Black));
-            PlaceNewPiece('h', 8, new Rook(Board, Color.Black));
-            PlaceNewPiece('e', 8, new King(Board, Color.Black));
+            PlaceNewPiece('a', 8, new King(Board, Color.Black));
+            PlaceNewPiece('b', 8, new Rook(Board, Color.Black));
         }
     }
 }

@@ -16,10 +16,7 @@ namespace Xadrez
                     try
                     {
                         Console.Clear();
-                        Screen.DisplayBoard(match.Board);
-                        Console.WriteLine();
-                        Console.WriteLine($"Turno: {match.Turn}");
-                        Console.WriteLine($"Aguardando jogada: {(match.ActualPlayer == Color.White ? "Brancas" : "Pretas")}");
+                        Screen.DisplayMatch(match);
 
                         Console.WriteLine();
                         Console.WriteLine("Origem: ");

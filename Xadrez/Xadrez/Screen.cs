@@ -5,6 +5,40 @@ namespace Xadrez
 {
     class Screen
     {
+        public static void DisplayMatch(ChessMatch match)
+        {
+            DisplayBoard(match.Board);
+            Console.WriteLine();
+            DisplayCapturedPieces(match);
+            Console.WriteLine();
+            Console.WriteLine($"Turno: {match.Turn}");
+            Console.WriteLine($"Aguardando jogada: {(match.ActualPlayer == Color.White ? "Brancas" : "Pretas")}");
+        }
+        
+        public static void DisplayCapturedPieces(ChessMatch match)
+        {
+            Console.WriteLine("Peças capturadas: ");
+            Console.Write("Brancas: ");
+            DisplayPiecesGroup(match.CapturedPiecesByColor(Color.White));
+            Console.WriteLine();
+            Console.Write("Pretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            DisplayPiecesGroup(match.CapturedPiecesByColor(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void DisplayPiecesGroup(HashSet<Piece> piecesGroup)
+        {
+            Console.Write("[");
+            foreach(Piece p in piecesGroup)
+            {
+                Console.Write(p + " ");
+            }
+            Console.Write("]");
+        }
+        
         public static void DisplayBoard(Board board)
         {
             for (int i = 0; i < board.Rows; i++)

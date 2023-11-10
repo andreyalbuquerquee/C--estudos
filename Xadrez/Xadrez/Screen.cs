@@ -13,6 +13,9 @@ namespace Xadrez
             Console.WriteLine();
             Console.WriteLine($"Turno: {match.Turn}");
             Console.WriteLine($"Aguardando jogada: {(match.ActualPlayer == Color.White ? "Brancas" : "Pretas")}");
+
+            if (match.Check) Console.WriteLine("Xeque!");
+            Console.WriteLine();
         }
         
         public static void DisplayCapturedPieces(ChessMatch match)

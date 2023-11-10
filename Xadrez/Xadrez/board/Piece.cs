@@ -20,6 +20,11 @@
             MovsMade++;
         }
 
+        public void DecreaseMovsMade()
+        {
+            MovsMade--;
+        }
+
         public abstract bool[,] PossibleMovs();
 
         public bool HasPossibleMovs()

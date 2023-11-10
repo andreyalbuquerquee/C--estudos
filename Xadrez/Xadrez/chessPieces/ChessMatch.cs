@@ -10,6 +10,7 @@ namespace chessPieces
         public bool Finished { get; private set; }
         private HashSet<Piece> Pieces;
         private HashSet<Piece> CapturedPieces;
+        public bool Check {  get; private set; }
 
         public ChessMatch()
         {
@@ -17,23 +18,47 @@ namespace chessPieces
             Turn = 1;
             ActualPlayer = Color.White;
             Finished = false;
+            Check = false;
             Pieces = new HashSet<Piece>();
             CapturedPieces = new HashSet<Piece>();
             PlacePieces();
         }
 
-        public void MakeMove(Position origin, Position target)
+        public Piece MakeMove(Position origin, Position target)
         {
             Piece p = Board.RemovePiece(origin);
             p.IncreaseMovsMade();
             Piece capturedPiece = Board.RemovePiece(target);
             Board.PlacePiece(p, target);
             if (capturedPiece != null) CapturedPieces.Add(capturedPiece);
+
+            return capturedPiece;
         }
 
+        public void UnmakeMove(Position origin, Position target, Piece capturedPiece)
+        {
+            Piece movedPiece = Board.RemovePiece(target);
+            movedPiece.DecreaseMovsMade();
+            if (capturedPiece != null)
+            {
+                Board.PlacePiece(capturedPiece, target);
+                CapturedPieces.Remove(capturedPiece);
+            }
+            Board.PlacePiece(movedPiece, origin);
+        }
+        
         public void MakePlay(Position origin, Position target) 
         {
-            MakeMove(origin, target);
+            Piece capturedPiece = MakeMove(origin, target);
+
+            if (IsKingInCheck(ActualPlayer))
+            {
+                UnmakeMove(origin, target, capturedPiece);
+                throw new BoardException("Você não pode se colocar em xeque!");
+            }
+
+            Check = IsKingInCheck(EnemyColor(ActualPlayer)); 
+
             Turn++;
             ChangePlayer();
         }
@@ -76,6 +101,33 @@ namespace chessPieces
             return piecesInGameByColor;
         }
         
+        private static Color EnemyColor(Color color)
+        {
+            return color == Color.White ? Color.Black : Color.White;
+        }
+
+        private Piece King(Color color)
+        {
+            foreach(Piece p in PiecesInGameByColor(color))
+            {
+                if (p is King) return p;
+            }
+            return null;
+        }
+        
+        public bool IsKingInCheck(Color color)
+        {
+            // Não é pra isso acontecer, mas estou colocando só pra proteger, caso não instancie um rei no tabuleiro
+            Piece king = King(color);
+            foreach (Piece p in PiecesInGameByColor(EnemyColor(color)))
+            {
+                bool[,] possiblePieceMoves = p.PossibleMovs();
+                if (possiblePieceMoves[king.Position.Row, king.Position.Column]) return true;
+            }
+
+            return false;
+        }
+        
         public void PlaceNewPiece(char column, int row,Piece piece)
         {
             Board.PlacePiece(piece, new ChessPosition(column, row).toPosition());
@@ -86,9 +138,11 @@ namespace chessPieces
         {
             PlaceNewPiece('a', 1, new Rook(Board, Color.White));
             PlaceNewPiece('h', 1, new Rook(Board, Color.White));
+            PlaceNewPiece('e', 1, new King(Board, Color.White));
 
             PlaceNewPiece('a', 8, new Rook(Board, Color.Black));
             PlaceNewPiece('h', 8, new Rook(Board, Color.Black));
+            PlaceNewPiece('e', 8, new King(Board, Color.Black));
         }
     }
 }

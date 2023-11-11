@@ -57,9 +57,12 @@ namespace chessPieces
                 throw new BoardException("Você não pode se colocar em xeque!");
             }
 
-            Check = IsKingInCheck(EnemyColor(ActualPlayer)); 
+            Check = IsKingInCheck(EnemyColor(ActualPlayer));
 
-            if (IsKingInCheckmate(EnemyColor(ActualPlayer))) Finished = true;
+            if (IsKingInCheckmate(EnemyColor(ActualPlayer)))
+            {
+                Finished = true;
+            }
             else
             {
                 Turn++;
@@ -76,7 +79,7 @@ namespace chessPieces
         
         public void ValidateTargetPosition(Position origin, Position target)
         {
-            if (!Board.Piece(origin).CanMoveTo(target)) throw new BoardException("Posição de destino inválida!");
+            if (!Board.Piece(origin).PossibleMov(target)) throw new BoardException("Posição de destino inválida!");
         }
         
         private void ChangePlayer() 
@@ -122,11 +125,14 @@ namespace chessPieces
         public bool IsKingInCheck(Color color)
         {
             // Não é pra isso acontecer, mas estou colocando só pra proteger, caso não instancie um rei no tabuleiro
-            Piece king = King(color);
+            Piece king = King(color) ?? throw new BoardException("Não há rei no tabuleiro!");
             foreach (Piece p in PiecesInGameByColor(EnemyColor(color)))
             {
                 bool[,] possiblePieceMoves = p.PossibleMovs();
-                if (possiblePieceMoves[king.Position.Row, king.Position.Column]) return true;
+                if (possiblePieceMoves[king.Position.Row, king.Position.Column])
+                {
+                    return true;
+                } 
             }
 
             return false;
@@ -140,13 +146,13 @@ namespace chessPieces
                 bool[,] possibleMovs = p.PossibleMovs();
                 for (int i = 0; i < Board.Rows; i++)
                 {
-                    for (int j = 0; i < Board.Columns; i++)
+                    for (int j = 0; j < Board.Columns; j++)
                     {
                         if (possibleMovs[i, j])
                         {
                             Position origin = p.Position;
                             Position target = new Position(i, j);
-                            Piece capturedPiece = MakeMove(p.Position, target);
+                            Piece capturedPiece = MakeMove(origin, target);
                             bool isCheck = IsKingInCheck(color);
                             UnmakeMove(origin, target, capturedPiece);
                             if (!isCheck) return false;

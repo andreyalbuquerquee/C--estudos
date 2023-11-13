@@ -1,6 +1,6 @@
 ﻿using board;
 
-namespace Xadrez.chessPieces
+namespace chessPieces
 {
     class Pawn : Piece
     {

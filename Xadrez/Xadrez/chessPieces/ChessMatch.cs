@@ -11,6 +11,7 @@ namespace chessPieces
         private HashSet<Piece> Pieces;
         private HashSet<Piece> CapturedPieces;
         public bool Check {  get; private set; }
+        public Piece VulnerableEnPassant { get; private set; }
 
         public ChessMatch()
         {
@@ -19,6 +20,7 @@ namespace chessPieces
             ActualPlayer = Color.White;
             Finished = false;
             Check = false;
+            VulnerableEnPassant = null;
             Pieces = new HashSet<Piece>();
             CapturedPieces = new HashSet<Piece>();
             PlacePieces();

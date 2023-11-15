@@ -39,7 +39,7 @@ namespace chessPieces
             if (p is King && target.Column == (origin.Column + 2))
             {
                 Position towerOrigin = new Position(origin.Row, origin.Column + 3);
-                Position towerTarget = new Position(origin.Row, target.Column + 1);
+                Position towerTarget = new Position(origin.Row, origin.Column + 1);
                 Piece tower = Board.RemovePiece(towerOrigin);
                 tower.IncreaseMovsMade();
                 Board.PlacePiece(tower, towerTarget);
@@ -74,7 +74,7 @@ namespace chessPieces
             if (movedPiece is King && target.Column == origin.Column + 2)
             {
                 Position towerOrigin = new Position(origin.Row, origin.Column + 3);
-                Position towerTarget = new Position(origin.Row, target.Column + 1);
+                Position towerTarget = new Position(origin.Row, origin.Column + 1);
                 Piece tower = Board.RemovePiece(towerTarget);
                 tower.DecreaseMovsMade();
                 Board.PlacePiece(tower, towerOrigin);

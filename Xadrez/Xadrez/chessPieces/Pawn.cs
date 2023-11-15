@@ -32,23 +32,23 @@ namespace chessPieces
 
             if (Color == Color.White)
             {
-                pos.SetValues(pos.Row - 1, pos.Column);
+                pos.SetValues(Position.Row - 1, Position.Column);
                 if (Board.IsPositionValid(pos) && Free(pos))
                 {
                     movs[pos.Row, pos.Column] = true;
                 }
-                pos.SetValues(pos.Row - 2, pos.Column);
+                pos.SetValues(Position.Row - 2, Position.Column);
                 Position p2 = new Position(pos.Row - 1, pos.Column);
                 if (Board.IsPositionValid(p2) && Free(p2) && Board.IsPositionValid(pos) && Free(pos) && MovsMade == 0)
                 {
                     movs[pos.Row, pos.Column] = true;
                 }
-                pos.SetValues(pos.Row - 1, pos.Column - 1);
+                pos.SetValues(Position.Row - 1, Position.Column - 1);
                 if (Board.IsPositionValid(pos) && HasEnemy(pos))
                 {
                     movs[pos.Row, pos.Column] = true;
                 }
-                pos.SetValues(pos.Row - 1, pos.Column + 1);
+                pos.SetValues(Position.Row - 1, Position.Column + 1);
                 if (Board.IsPositionValid(pos) && HasEnemy(pos))
                 {
                     movs[pos.Row, pos.Column] = true;
@@ -56,23 +56,23 @@ namespace chessPieces
             }
             else
             {
-                pos.SetValues(pos.Row + 1, pos.Column);
+                pos.SetValues(Position.Row + 1, Position.Column);
                 if (Board.IsPositionValid(pos) && Free(pos))
                 {
                     movs[pos.Row, pos.Column] = true;
                 }
-                pos.SetValues(pos.Row + 2, pos.Column);
-                Position p2 = new Position(pos.Row + 1, pos.Column);
+                pos.SetValues(Position.Row + 2, Position.Column);
+                Position p2 = new Position(pos.Row - 1, pos.Column);
                 if (Board.IsPositionValid(p2) && Free(p2) && Board.IsPositionValid(pos) && Free(pos) && MovsMade == 0)
                 {
                     movs[pos.Row, pos.Column] = true;
                 }
-                pos.SetValues(pos.Row + 1, pos.Column - 1);
+                pos.SetValues(Position.Row + 1, Position.Column - 1);
                 if (Board.IsPositionValid(pos) && HasEnemy(pos))
                 {
                     movs[pos.Row, pos.Column] = true;
                 }
-                pos.SetValues(pos.Row + 1, pos.Column + 1);
+                pos.SetValues(Position.Row + 1, Position.Column + 1);
                 if (Board.IsPositionValid(pos) && HasEnemy(pos))
                 {
                     movs[pos.Row, pos.Column] = true;

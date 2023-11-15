@@ -80,7 +80,7 @@ namespace chessPieces
         {
             Piece p = Board.Piece(position);
 
-            return p == null || p.Color != this.Color;
+            return p == null || p.Color != Color;
         }
 
     }

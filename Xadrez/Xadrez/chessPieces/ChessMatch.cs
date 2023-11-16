@@ -134,6 +134,18 @@ namespace chessPieces
                 throw new BoardException("Você não pode se colocar em xeque!");
             }
 
+            Piece p = Board.Piece(target);
+
+            // #JogadaEspecial promoção
+            if (p is Pawn && (p.Color == Color.White && target.Column == 0 || p.Color == Color.Black && target.Column == 7))
+            {
+                p = Board.RemovePiece(target);
+                Pieces.Remove(p);
+                Piece queen = new Queen(Board, p.Color);
+                Board.PlacePiece(queen, target);
+                Pieces.Add(queen);
+            }
+
             Check = IsKingInCheck(EnemyColor(ActualPlayer));
 
             if (IsKingInCheckmate(EnemyColor(ActualPlayer)))
@@ -146,7 +158,6 @@ namespace chessPieces
                 ChangePlayer();
             }
 
-            Piece p = Board.Piece(target);
 
             // #JogadaEspecial EnPassant
             VulnerableEnPassant = p is Pawn && (target.Row == origin.Row + 2 || target.Row == origin.Row - 2) ? p : null;

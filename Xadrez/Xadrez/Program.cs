@@ -1,5 +1,6 @@
 ﻿using board;
 using chessPieces;
+using System.Text;
 
 namespace Xadrez
 {
@@ -7,6 +8,7 @@ namespace Xadrez
     {
         static void Main(string[] args) 
         {
+            Console.OutputEncoding = Encoding.UTF8;
             try
             {
                 ChessMatch match = new ChessMatch();

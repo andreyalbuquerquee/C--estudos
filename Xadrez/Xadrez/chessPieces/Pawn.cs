@@ -1,4 +1,5 @@
 ﻿using board;
+using System.Text;
 
 namespace chessPieces
 {

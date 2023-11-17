@@ -1,4 +1,4 @@
-﻿using System.IO;
+﻿
 
 namespace Course
 {
@@ -7,25 +7,23 @@ namespace Course
         static void Main(string[] args)
         {
             string sourcePath = @"C:\Users\andre\OneDrive\Documents\C# estudos\file1.txt";
-            StreamReader sr = null;
 
             try
             {
-                sr = File.OpenText(sourcePath);
-                
-                while(!sr.EndOfStream)
+                using (FileStream fs = new FileStream(sourcePath, FileMode.Open))
                 {
-                    string line = sr.ReadLine();
-                    Console.WriteLine(line);
-                }  
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        while (!sr.EndOfStream)
+                        {
+                            Console.WriteLine(sr.ReadLine());
+                        }
+                    }
+                }
             }
-            catch(IOException ex)
+            catch (IOException ex) 
             {
                 Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                if (sr != null) sr.Close();
             }
         }
     }

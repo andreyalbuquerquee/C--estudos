@@ -7,19 +7,19 @@ namespace Course
         static void Main(string[] args)
         {
             string sourcePath = @"C:\Users\andre\OneDrive\Documents\C# estudos\file1.txt";
+            string targetPath = @"C:\Users\andre\OneDrive\Documents\C# estudos\file2.txt";
 
             try
             {
-                using (FileStream fs = new FileStream(sourcePath, FileMode.Open))
+                string[] lines = File.ReadAllLines(sourcePath);
+                using (StreamWriter sw = File.AppendText(targetPath)) 
                 {
-                    using (StreamReader sr = new StreamReader(fs))
+                    foreach (string line in lines) 
                     {
-                        while (!sr.EndOfStream)
-                        {
-                            Console.WriteLine(sr.ReadLine());
-                        }
+                        sw.WriteLine(line.ToUpper());
                     }
                 }
+
             }
             catch (IOException ex) 
             {

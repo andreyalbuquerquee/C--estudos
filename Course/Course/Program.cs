@@ -6,19 +6,16 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            string sourcePath = @"C:\Users\andre\OneDrive\Documents\C# estudos\file1.txt";
-            string targetPath = @"C:\Users\andre\OneDrive\Documents\C# estudos\file2.txt";
+            string path = @"C:\Users\andre\OneDrive\Documents\C# estudos";
 
             try
             {
-                string[] lines = File.ReadAllLines(sourcePath);
-                using (StreamWriter sw = File.AppendText(targetPath)) 
+                IEnumerable<string> folders = Directory.EnumerateFileSystemEntries(path, "*.cs", SearchOption.AllDirectories);
+                foreach (string folder in folders) 
                 {
-                    foreach (string line in lines) 
-                    {
-                        sw.WriteLine(line.ToUpper());
-                    }
+                    Console.WriteLine(folder);
                 }
+                Directory.CreateDirectory(path + @"\teste");
 
             }
             catch (IOException ex) 

@@ -2,7 +2,7 @@
 
 namespace Course.Model.Entities
 {
-    class Circle : Shape
+    class Circle : AbstractShape
     {
         public double Radius { get; set; }
 

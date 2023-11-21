@@ -1,17 +1,21 @@
-﻿using Course.Model.Entities;
-using Course.Model.Enums;
-
-namespace Course
+﻿namespace Course
 {
     class Program
     {
         static void Main(string[] args)
         {
-            IShape s1 = new Circle() { Radius = 2.0, Color = Color.WHITE};
-            IShape s2 = new Rectangle() { Width = 3.5, Height = 4.2, Color = Color.WHITE };
+            PrintService printService = new PrintService();
 
-            Console.WriteLine(s1);
-            Console.WriteLine(s2);
+            Console.Write("How many values?");
+            int amountOfValues = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < amountOfValues; i++) 
+            {
+                printService.AddValue(int.Parse(Console.ReadLine()));
+            }
+
+            printService.Print();
+            Console.WriteLine("First: " + printService.First());
         }
     }
 }

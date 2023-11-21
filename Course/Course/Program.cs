@@ -1,8 +1,5 @@
-﻿
-
-using Course.Entities;
-using Course.Services;
-using System.Globalization;
+﻿using Course.Model.Entities;
+using Course.Model.Enums;
 
 namespace Course
 {
@@ -10,28 +7,11 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter rental data: ");
-            Console.WriteLine("Car Moldel: ");
-            string model = Console.ReadLine();
-            Console.WriteLine("Pickup (dd/MM/yyyy hh:mm): ");
-            DateTime start = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
-            Console.WriteLine("Return (dd/MM/yyyy hh:mm): ");
-            DateTime finish = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
+            Shape s1 = new Circle() { Radius = 2.0, Color = Color.WHITE};
+            Shape s2 = new Rectangle() { Width = 3.5, Height = 4.2, Color = Color.WHITE };
 
-            Console.WriteLine("Enter price per hour: ");
-            double pricePerHour = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-            Console.WriteLine("Enter price per day: ");
-            double pricePerDay = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-
-            CarRental carRental = new CarRental(start, finish, new Vehicle(model));
-
-            RentalService rentalService = new RentalService(pricePerHour, pricePerDay);
-
-            rentalService.ProcessInvoice(carRental);
-
-            Console.WriteLine(carRental.Invoice);
-
+            Console.WriteLine(s1);
+            Console.WriteLine(s2);
         }
     }
 }

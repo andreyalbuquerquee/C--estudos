@@ -1,21 +1,18 @@
-﻿namespace Course
+﻿using Course.Entities;
+
+namespace Course
 {
     class Program
     {
         static void Main(string[] args)
         {
-            PrintService printService = new PrintService();
+            Client a = new Client { Name = "Maria", Email = "maria@gmail.com"};
+            Client b = new Client { Name = "Alex", Email = "maria@gmail.com" };
 
-            Console.Write("How many values?");
-            int amountOfValues = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < amountOfValues; i++) 
-            {
-                printService.AddValue(int.Parse(Console.ReadLine()));
-            }
-
-            printService.Print();
-            Console.WriteLine("First: " + printService.First());
+            Console.WriteLine(a.Equals(b));
+            Console.WriteLine(a == b); // Aqui da diferente por causa da referência de memória
+            Console.WriteLine(a.GetHashCode());
+            Console.WriteLine(b.GetHashCode());
         }
     }
 }

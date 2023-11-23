@@ -1,37 +1,27 @@
-﻿using Course.Entities;
-
+﻿
 namespace Course
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter full file path: ");
-            string path = Console.ReadLine();
-            HashSet<LogRecord> logRecords = new HashSet<LogRecord>();
-            
-            try
-            { 
-                using (StreamReader sr = new StreamReader(path)) 
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        string[] logInfos = sr.ReadLine().Split(" ");
+            Dictionary<string, string> cookies = new Dictionary<string, string>();
 
-                        string name = logInfos[0];
-                        DateTime accessTime = DateTime.Parse(logInfos[1]);
+            cookies["user"] = "Maria";
+            cookies["email"] = "maria@gmail.com";
+            cookies["phone"] = "99775522";
+            cookies["phone"] = "76545451";
 
-                        logRecords.Add(new LogRecord(name, accessTime));
-                    }
+            Console.WriteLine(cookies["phone"]);
 
-                    Console.WriteLine($"Total users: {logRecords.Count}");
-                }
-            }
-            catch (IOException ex) 
+            cookies.Remove("email");
+
+            Console.WriteLine(cookies.ContainsKey("email"));
+
+            foreach (KeyValuePair<string, string> item in cookies) 
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(item.Key + " : " + item.Value);
             }
-
         }
     }
 }

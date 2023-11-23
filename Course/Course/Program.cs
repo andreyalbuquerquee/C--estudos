@@ -1,35 +1,37 @@
-﻿namespace Course
+﻿using Course.Entities;
+
+namespace Course
 {
     class Program
     {
         static void Main(string[] args)
         {
-            SortedSet<int> a = new SortedSet<int>() { 10, 0, 2, 4, 5, 6, 8 };
-            SortedSet<int> b = new SortedSet<int>() { 5, 6, 7, 8, 9, 10 };
+            Console.WriteLine("Enter full file path: ");
+            string path = Console.ReadLine();
+            HashSet<LogRecord> logRecords = new HashSet<LogRecord>();
+            
+            try
+            { 
+                using (StreamReader sr = new StreamReader(path)) 
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string[] logInfos = sr.ReadLine().Split(" ");
 
-            // Union
-            SortedSet<int> c = new SortedSet<int>(a);
-            c.UnionWith(b);
-            PrintCollection(c);
+                        string name = logInfos[0];
+                        DateTime accessTime = DateTime.Parse(logInfos[1]);
 
-            // Intersection
-            SortedSet<int> d = new SortedSet<int>(a);
-            d.IntersectWith(b); 
-            PrintCollection(d);
+                        logRecords.Add(new LogRecord(name, accessTime));
+                    }
 
-            // Difference
-            SortedSet<int> e = new SortedSet<int>(a);
-            e.ExceptWith(b);
-            PrintCollection(e);
-        }
-
-        static void PrintCollection<T>(IEnumerable<T> collection)
-        {
-            foreach (T item in collection) 
-            {
-                Console.Write(item + " ");
+                    Console.WriteLine($"Total users: {logRecords.Count}");
+                }
             }
-            Console.WriteLine();
+            catch (IOException ex) 
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }

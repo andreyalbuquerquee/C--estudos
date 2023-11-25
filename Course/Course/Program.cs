@@ -1,24 +1,22 @@
 ﻿
 using Course.Entities;
 
+using System.Linq;
+using System.Threading.Channels;
+
 namespace Course
 {
     class Program
     {
         static void Main(string[] args)
         {
-            List<Product> products = new List<Product>();
+            int[] numbers = { 2, 3, 4, 5 };
 
-            products.Add(new Product("TV", 900.00));
-            products.Add(new Product("Notebook", 1200.00));
-            products.Add(new Product("Tablet", 450.00));
+            var result = numbers.Where(number => number % 2 == 0).Select(x => x * 10);
 
-            
-            products.Sort((p1, p2) => p1.Price.CompareTo(p2.Price));
-
-            foreach (Product product in products) 
+            foreach (int number in result) 
             {
-                Console.WriteLine(product);
+                Console.WriteLine(number);
             }
         }
 
